@@ -33,12 +33,22 @@
 
         <div>
           <label class="block text-xs text-slate-400">Заметка</label>
-          <textarea id="note" placeholder="Оплата до 15 числа, VIP клиент..." class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm mt-1 h-16"></textarea>
+          <textarea id="note" placeholder="Оплата за месяц, VIP клиент..." class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm mt-1 h-16"></textarea>
         </div>
 
+        <!-- Длительность с выбором единиц -->
         <div>
-          <label class="block text-xs text-slate-400">Длительность действия (в секундах, 0 = навсегда)</label>
-          <input type="number" id="duration" placeholder="3600 (1 час) или 86400 (1 день)" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm mt-1">
+          <label class="block text-xs text-slate-400">Срок действия (0 = бессрочно)</label>
+          <div class="flex gap-2 mt-1">
+            <input type="number" id="durationValue" placeholder="1" class="w-1/2 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm">
+            <select id="durationUnit" class="w-1/2 bg-slate-900 border border-slate-700 rounded px-2 py-2 text-sm">
+              <option value="seconds">Секунд</option>
+              <option value="minutes">Минут</option>
+              <option value="hours">Часов</option>
+              <option value="days" selected>Дней</option>
+              <option value="months">Месяцев (30дн)</option>
+            </select>
+          </div>
         </div>
 
         <div>
@@ -115,7 +125,8 @@
           masterKey,
           label: document.getElementById('label').value,
           note: document.getElementById('note').value,
-          durationSeconds: document.getElementById('duration').value,
+          durationValue: document.getElementById('durationValue').value,
+          durationUnit: document.getElementById('durationUnit').value,
           maxUses: document.getElementById('maxUses').value
         })
       });
